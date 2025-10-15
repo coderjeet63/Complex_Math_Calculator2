@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 2: Compound Interest Rate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #f0f4f8; --card-bg: #ffffff; --text-color: #334e68; --primary-color: #2c5282; --accent-color: #2f855a; --border-color: #e2e8f0; --shadow-color: rgba(0, 0, 0, 0.1); }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; font-size: 16px; }
+        .solution-container { max-width: 800px; margin: auto; background: var(--card-bg); border-radius: 12px; padding: 25px; box-shadow: 0 10px 25px var(--shadow-color); border: 1px solid var(--border-color); }
+        h1, h2 { color: var(--primary-color); text-align: center; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-top: 0; }
+        .problem-statement { background: #ebf8ff; padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 5px solid var(--primary-color); }
+        .step { display: flex; align-items: center; margin-bottom: 25px; gap: 15px; }
+        .step-number { background: var(--primary-color); color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        .step-content { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .formula, .calculation { background-color: #f8fafc; padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border-color); font-family: monospace; font-size: 1.1em; display: flex; align-items: center; }
+        .variable, .value, .operator { padding: 4px 8px; border-radius: 6px; }
+        .variable { background-color: #dbeafe; color: #1e40af; font-weight: bold; }
+        .value { background-color: #f0fff4; color: #276749; font-weight: bold; }
+        .highlight-box { background-color: var(--accent-color); color: white; border-radius: 6px; padding: 5px 10px; font-weight: 500; }
+        .arrow { font-size: 2em; color: var(--primary-color); margin: 0 10px; }
+        .fraction { display: inline-block; text-align: center; vertical-align: middle; }
+        .fraction .numerator { border-bottom: 2px solid var(--text-color); padding: 0 5px; }
+        .final-answer-box { margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #1a365d, #2c5282); color: white; text-align: center; border-radius: 8px; font-size: 1.5em; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="solution-container">
+        <h1>Compound Interest Rate Solution</h1>
+        <div class="problem-statement">
+            <strong>Problem:</strong> <span id="problem-statement-value">...</span>
+        </div>
+
+        <!-- Step 1: State the formula -->
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <div class="formula">
+                    <span class="variable">A</span> = <span class="variable">P</span> (1 + <span class="variable">R</span>/100)<sup><span class="variable">t</span></sup>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Rearrange the formula -->
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                 <div class="calculation">
+                    <div class="fraction">
+                        <span class="numerator"><span class="variable">A</span></span>
+                        <span><span class="variable">P</span></span>
+                    </div>
+                    = (1 + <span class="variable">R</span>/100)<sup><span class="variable">t</span></sup>
+                </div>
+                <div class="arrow">&rarr;</div>
+                <div class="calculation">
+                    <div class="fraction">
+                        <span class="numerator"><span class="value" id="val-a-2">A</span></span>
+                        <span><span class="value" id="val-p-2">P</span></span>
+                    </div>
+                    = <span class="highlight-box" id="val-ratio">Ratio</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 3: Isolate the rate term -->
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <div class="calculation">
+                    (<span class="variable">A/P</span>)<sup>1/<span class="variable">t</span></sup> = 1 + <span class="variable">R</span>/100
+                </div>
+                <div class="arrow">&rarr;</div>
+                <div class="calculation">
+                    (<span class="value" id="val-ratio-2">Ratio</span>)<sup><span class="value" id="val-time-inverse">1/t</span></sup> = <span class="highlight-box" id="val-rate-factor">Factor</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 4: Solve for R -->
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <div class="calculation">
+                    <span class="variable">R</span> = 100 * [ (<span class="variable">A/P</span>)<sup>1/<span class="variable">t</span></sup> - 1 ]
+                </div>
+                 <div class="arrow">&rarr;</div>
+                <div class="calculation">
+                    <span class="variable">R</span> = 100 * (<span class="value" id="val-rate-decimal">...</span>) = <span class="highlight-box" id="val-rate-final">Rate</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="final-answer-box">
+            Rate of Interest = <span class="value" style="background-color: white; color: #1a365d;">Rate%</span>
+        </div>
+    </div>
+</body>
+</html>

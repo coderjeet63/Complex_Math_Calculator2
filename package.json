@@ -1,0 +1,33 @@
+{
+  "name": "mern-template-solver",
+  "version": "1.0.0",
+  "description": "MERN app to solve problems using HTML templates. Run 'npm run install-all' for one-step setup.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && npm install --prefix client",
+    "heroku-postbuild": "npm run install-all && npm run build --prefix client"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "express",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "mongoose": "^7.8.7"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.10"
+  }
+}

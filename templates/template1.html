@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 1: Pythagorean Triplet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #f0f4f8; --card-bg: #ffffff; --text-color: #334e68; --primary-color: #3490dc; --accent-color: #f59e0b; --border-color: #e2e8f0; --shadow-color: rgba(0, 0, 0, 0.1); }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; font-size: 16px; }
+        .solution-container { max-width: 800px; margin: auto; background: var(--card-bg); border-radius: 12px; padding: 25px; box-shadow: 0 10px 25px var(--shadow-color); border: 1px solid var(--border-color); }
+        h1, h2 { color: var(--primary-color); text-align: center; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-top: 0; }
+        .problem-statement { background: #e6f4ff; padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 5px solid var(--primary-color); }
+        .step { display: flex; align-items: center; margin-bottom: 25px; gap: 15px; }
+        .step-number { background: var(--primary-color); color: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        .step-content { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .formula, .calculation { background-color: #f8fafc; padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border-color); font-family: monospace; font-size: 1.1em; }
+        .variable, .value, .operator { padding: 4px 8px; border-radius: 6px; }
+        .variable { background-color: #dbeafe; color: #1e40af; font-weight: bold; }
+        .value { background-color: #fee2e2; color: #991b1b; font-weight: bold; }
+        .highlight-box { background-color: var(--accent-color); color: white; border-radius: 6px; padding: 5px 10px; font-weight: 500; }
+        .arrow { font-size: 2em; color: var(--primary-color); margin: 0 10px; }
+        .final-answer-box { margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #2c5282, #3490dc); color: white; text-align: center; border-radius: 8px; font-size: 1.5em; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="solution-container">
+        <h1>Pythagorean Theorem Solution</h1>
+        <div class="problem-statement">
+            <strong>Problem:</strong> <span id="problem-statement-value">...</span>
+        </div>
+        
+        <!-- Step 1: State the formula -->
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <div class="formula">
+                    <span class="variable">a<sup>2</sup></span> + <span class="variable">b<sup>2</sup></span> = <span class="variable">c<sup>2</sup></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Substitute values -->
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <div class="calculation">
+                    <span class="variable">c<sup>2</sup></span> = (<span class="value" id="var-a-1">a</span>)<sup>2</sup> + (<span class="value" id="var-b-1">b</span>)<sup>2</sup>
+                </div>
+                <div class="arrow">&rarr;</div>
+                <div class="calculation">
+                    <span class="variable">c<sup>2</sup></span> = <span class="highlight-box" id="val-a-squared">a^2</span> + <span class="highlight-box" id="val-b-squared">b^2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Simplify -->
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                 <div class="calculation">
+                    <span class="variable">c<sup>2</sup></span> = <span class="value" id="val-c-squared">c^2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Find the square root -->
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <div class="calculation">
+                    <span class="variable">c</span> = &radic;<span class="value" id="val-c-squared-2">c^2</span>
+                </div>
+                 <div class="arrow">&rarr;</div>
+                 <div class="calculation">
+                    <span class="variable">c</span> = <span class="highlight-box" id="val-c-final">c</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="final-answer-box">
+            Hypotenuse (c) = <span class="value" style="background-color: white; color: #2c5282;">c</span>
+        </div>
+    </div>
+</body>
+</html>
