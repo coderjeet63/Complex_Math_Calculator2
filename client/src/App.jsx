@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// ==> STEP 1: Backend ka live URL yahaan par define karein
+const API_BASE_URL = 'https://complex-math-calculator-backend.onrender.com';
+
 function SolutionGenerator() {
   const [problemType, setProblemType] = useState('pythagorean');
   const [inputs, setInputs] = useState({ a: '3', b: '4' });
@@ -11,7 +14,8 @@ function SolutionGenerator() {
 
   const fetchHistory = async () => {
     try {
-      const res = await axios.get('/api/solve/history');
+      // ==> STEP 2: API call mein poora URL istemaal karein
+      const res = await axios.get(`${API_BASE_URL}/api/solve/history`);
       if (Array.isArray(res.data)) setHistory(res.data);
       else {
         setHistory([]);
@@ -31,7 +35,8 @@ function SolutionGenerator() {
     if (problemType === 'pythagorean') {
       setInputs({ a: '3', b: '4' });
     } else {
-      setInputs({ principal: '5000', amount: '6050', time: '2' });
+      // Note: Backend expects 'p', 'r', 't'. Let's match the names.
+      setInputs({ p: '5000', amount: '6050', t: '2' });
     }
     setSolutionHtml('');
     setError('');
@@ -52,9 +57,10 @@ function SolutionGenerator() {
       const formattedInputs = Object.fromEntries(
         Object.entries(inputs).map(([key, value]) => [key, parseFloat(value)])
       );
-      const res = await axios.post('/api/solve', { problemType, inputs: formattedInputs });
+      // ==> STEP 3: API call mein poora URL istemaal karein
+      const res = await axios.post(`${API_BASE_URL}/api/solve`, { problemType, inputs: formattedInputs });
       setSolutionHtml(res.data.solutionHtml);
-      fetchHistory();
+      fetchHistory(); // History ko refresh karein
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred.');
     } finally {
@@ -80,16 +86,16 @@ function SolutionGenerator() {
       return (
         <>
           <div className="flex-1">
-            <label htmlFor="principal" className="block text-sm font-medium text-gray-700">Principal (P)</label>
-            <input type="number" name="principal" id="principal" value={inputs.principal} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
+            <label htmlFor="p" className="block text-sm font-medium text-gray-700">Principal (P)</label>
+            <input type="number" name="p" id="p" value={inputs.p} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
           </div>
           <div className="flex-1">
             <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount (A)</label>
             <input type="number" name="amount" id="amount" value={inputs.amount} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
           </div>
           <div className="flex-1">
-            <label htmlFor="time" className="block text-sm font-medium text-gray-700">Time (t) in years</label>
-            <input type="number" name="time" id="time" value={inputs.time} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
+            <label htmlFor="t" className="block text-sm font-medium text-gray-700">Time (t) in years</label>
+            <input type="number" name="t" id="t" value={inputs.t} onChange={handleInputChange} className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"/>
           </div>
         </>
       );
